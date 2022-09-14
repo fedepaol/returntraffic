@@ -34,6 +34,8 @@ services:
                 ipv4_address: 10.111.222.21
             external0:
                 ipv4_address: 10.111.223.21
+            external1:
+                ipv4_address: 10.111.224.21
 
     client1:
         privileged: true
@@ -50,7 +52,8 @@ services:
         image: testfedora
         entrypoint: sleep inf
         networks:
-            external0:
+            external1:
+                ipv4_address: 10.111.224.23
 
 networks:
     primary:
@@ -73,3 +76,8 @@ networks:
         ipam:
             config:
                 - subnet: 10.111.223.1/24
+    external1:
+        driver: "bridge"
+        ipam:
+            config:
+                - subnet: 10.111.224.1/24
