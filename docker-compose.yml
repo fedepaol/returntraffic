@@ -3,7 +3,6 @@ version: '3'
 services:
 
     node:
-        entrypoint: sleep inf
         build:
           context: .
         image: testfedora
@@ -50,7 +49,9 @@ services:
     client2:
         privileged: true
         image: testfedora
-        entrypoint: sleep inf
+        volumes:
+          - ./client2:/data
+        entrypoint: /data/client2_setup.sh
         networks:
             external1:
                 ipv4_address: 10.111.224.23
