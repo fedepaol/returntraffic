@@ -4,6 +4,6 @@ set -x
 
 ip addr add 192.168.1.1/24 dev lo
 ip addr add 192.168.2.1/24 dev lo
-nc -l 192.168.1.1 3000 &
-nc -l 192.168.2.1 3000 &
+socat -v tcp-l:3000,bind=192.168.1.1,fork exec:'echo svc1' &
+socat -v tcp-l:3000,bind=192.168.2.1,fork exec:'echo svc2' &
 sleep inf
