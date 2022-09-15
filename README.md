@@ -118,3 +118,18 @@ The connection is established as expected
 15:46:45.653203 eth1  In  IP 10.111.223.23.39900 > 6153a0852c22.hbci: Flags [S], seq 3663634585, win 64240, options [mss 1460,sackOK,TS val 3024050697 ecr 0,nop,wscale 7], length 0
 15:46:45.653241 eth1  Out IP 6153a0852c22.hbci > 10.111.223.23.39900: Flags [R.], seq 0, ack 3663634586, win 0, length 0
 ```
+
+### Using source based routing
+
+```
+echo 200 device1 >> /etc/iproute2/rt_tables
+
+ip route add default via 10.111.221.21 dev eth1 table device1
+ip rule add from 192.168.1.1 lookup device1
+
+echo 201 device2 >> /etc/iproute2/rt_tables
+ip route add default via 10.111.222.21 dev eth2 table device2
+ip rule add from 192.168.2.1 lookup device1
+```
+
+This will route the traffic coming from the "service ip" to the right interface.
