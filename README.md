@@ -82,7 +82,7 @@ External0    │                  │   External1
 
 ### Trying to reach the service from client1
 
-From the client:
+From client1:
 
 ```bash
 [root@64fb1ad008bb /]# nc 192.168.1.1 3000
@@ -104,6 +104,16 @@ listening on any, link-type LINUX_SLL2 (Linux cooked v2), snapshot length 262144
 
 The ack is beint sent over the default gateway (eth0).
 
+## Possible solutions
+
+Here below there are possible solution to drive the traffic to the right interface.
+
+All the approaches are implemented using scripts under `node`:
+
+### A static route to the client
+
+The reference file is [set_route_to_client.sh](./node/set_route_to_client.sh)
+
 After setting a route back to the client via the router (static route):
 
 ```bash
@@ -119,9 +129,11 @@ The connection is established as expected
 15:46:45.653241 eth1  Out IP 6153a0852c22.hbci > 10.111.223.23.39900: Flags [R.], seq 0, ack 3663634586, win 0, length 0
 ```
 
-### Using source based routing
+### Using source based routing to choose the next hop
 
-```
+The reference file is [setup_sbr.sh](./node/setup_sbr.sh)
+
+```bash
 echo 200 device1 >> /etc/iproute2/rt_tables
 
 ip route add default via 10.111.221.21 dev eth1 table device1
@@ -133,3 +145,69 @@ ip rule add from 192.168.2.1 lookup device1
 ```
 
 This will route the traffic coming from the "service ip" to the right interface.
+
+### Marking the traffic
+
+The reference file is [setup_marking.sh](./node/setup_marking.sh)
+
+```bash
+iptables -A OUTPUT -t mangle -s 192.168.2.1 -j MARK --set-mark 2
+
+echo 200 device1 >> /etc/iproute2/rt_tables
+ip route add default via 10.111.221.21 dev eth1 table device1
+
+ip rule add fwmark 2 table device1
+```
+
+This is the same as above, but the logic is done to the traffic marked.
+
+## Using a VRF
+
+Despite the problem of return traffic is not solved by using a VRF, placing the interface used
+for the return traffic offers interesting capabilities.
+
+The idea is to wrap the interface with a VRF, and do the following setup:
+
+- A veth pair is created, with one leg in the default VRF and one leg in the VRF associated to the
+interface
+- In the VRF routing table, the default gateway is set to the "router" associated to the interface
+- There's a route toward the service via the veth leg in the VRF
+
+So the traffic comes from eth1, gets directed to the veth, lands on the default vrf and reaches the
+service endpoint via the CNI. The return traffic is as described in the previous sections, with the
+difference that the traffic is directed to the veth leg instead of the interface.
+
+```none
+
+┌──────────────────────────────────────────────────────────────────────┐
+│                                                                      │
+│                                                                      │
+│                                                                      │
+│                                           ┌──────────────────────────┤
+│                                           │                          │
+│                                           │                          │
+│                                           │                          │
+│                            ┌──────────────┼───────────┐ ┌────────────┤
+│                            │              │           │ │            │
+│         ◄──────────────────┤              │           │ │            │
+│                            │ veth1-def    │ veth1-vrf │ │    eth1    │
+│         ──────────────────►│              │           │ │            │
+│                            └──────────────┼───────────┘ └────────────┤
+│                                           │                          │
+│                                           │                          │
+│                                           │                 vrf      │
+│                                           └──────────────────────────┤
+│                                                                      │
+│                                                                      │
+│                                                             Node     │
+│                                                                      │
+│                                                                      │
+│                                                                      │
+└──────────────────────────────────────────────────────────────────────┘
+
+```
+
+From the default vrf point of view, the behaviour is the same and both source based routing or marking can be used to drive the return traffic to the veth leg related to the interface.
+
+The setup of the vrfs can be found under [node/vrf/vrf_setup.sh](./node/vrf/vrf_setup.sh) while the logic to drive
+the traffic is either under [node/vrf/setup_sbr.sh](./node/vrf/setup_sbr.sh) or [node/vr/setup_marking.sh](./node/vrf/setup_marking.sh).
