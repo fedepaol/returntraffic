@@ -544,7 +544,7 @@ create_kind_cluster() {
   if kind get clusters | grep ovn; then
     delete
   fi
-  kind create cluster --name "${KIND_CLUSTER_NAME}" --kubeconfig "${KUBECONFIG}" --image "${KIND_IMAGE}":"${K8S_VERSION}" --config=${KIND_CONFIG_LCL} --retain
+  kind create cluster --name "${KIND_CLUSTER_NAME}" --kubeconfig "${KUBECONFIG}" --config=${KIND_CONFIG_LCL} --retain
   cat "${KUBECONFIG}"
 }
 
