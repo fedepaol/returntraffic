@@ -1,0 +1,5 @@
+- run ovnk + kind
+- run setup networks
+- export KUBECONFIG=~/ovn.conf
+- run inv dev-env -p bgp -b frr
+- run start_client

@@ -1,0 +1,84 @@
+---
+version: '3'
+services:
+
+    node:
+        build:
+          context: .
+        image: testfedora
+        privileged: true
+        entrypoint: /data/node_setup.sh
+        volumes:
+          - ./node:/data
+        networks:
+            primary:
+                ipv4_address: 10.111.220.11
+            vlan0:
+                ipv4_address: 10.111.221.11
+            vlan1:
+                ipv4_address: 10.111.222.11
+
+    router:
+        depends_on:
+            - node
+        image: testfedora
+        privileged: true
+        volumes:
+          - ./router:/data
+        entrypoint: /data/router_setup.sh
+        networks:
+            vlan0:
+                ipv4_address: 10.111.221.21
+            vlan1:
+                ipv4_address: 10.111.222.21
+            external0:
+                ipv4_address: 10.111.223.21
+            external1:
+                ipv4_address: 10.111.224.21
+
+    client1:
+        privileged: true
+        image: testfedora
+        volumes:
+          - ./client1:/data
+        entrypoint: /data/client1_setup.sh
+        networks:
+            external0:
+                ipv4_address: 10.111.223.23
+
+    client2:
+        privileged: true
+        image: testfedora
+        volumes:
+          - ./client2:/data
+        entrypoint: /data/client2_setup.sh
+        networks:
+            external1:
+                ipv4_address: 10.111.224.23
+
+networks:
+    primary:
+        driver: "bridge"
+        ipam:
+            config:
+                - subnet: 10.111.220.1/24
+    vlan0:
+        driver: "bridge"
+        ipam:
+            config:
+                - subnet: 10.111.221.1/24
+    vlan1:
+        driver: "bridge"
+        ipam:
+            config:
+                - subnet: 10.111.222.1/24
+    external0:
+        driver: "bridge"
+        ipam:
+            config:
+                - subnet: 10.111.223.1/24
+    external1:
+        driver: "bridge"
+        ipam:
+            config:
+                - subnet: 10.111.224.1/24

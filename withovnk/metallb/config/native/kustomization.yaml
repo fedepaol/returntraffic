@@ -1,0 +1,25 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- ns.yaml
+- ../crd
+- ../rbac
+- ../controllers
+- ../webhook
+namespace: metallb-system
+
+# the following config is for teaching kustomize how to do var substitution.
+vars:
+- fieldref:
+    fieldPath: metadata.namespace
+  name: SERVICE_NAMESPACE
+  objref:
+    kind: Service
+    name: webhook-service
+    version: v1
+- fieldref: {}
+  name: SERVICE_NAME
+  objref:
+    kind: Service
+    name: webhook-service
+    version: v1
