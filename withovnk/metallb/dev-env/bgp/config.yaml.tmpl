@@ -33,3 +33,11 @@ kind: BGPAdvertisement
 metadata:
   name: empty
   namespace: metallb-system
+spec:
+  peers:
+    - routervlan0
+  nodeSelectors:
+  - matchLabels:
+      kubernetes.io/hostname: ovn-worker
+
+
