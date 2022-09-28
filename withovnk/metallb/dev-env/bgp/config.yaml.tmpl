@@ -21,23 +21,47 @@ spec:
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
-  name: dev-env-bgp
+  name: first-pool
   namespace: metallb-system
 spec:
   addresses:
   - 192.168.10.0/24
-  - fc00:f853:0ccd:e799::/124
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: second-pool
+  namespace: metallb-system
+spec:
+  addresses:
+  - 192.168.11.0/24
 ---
 apiVersion: metallb.io/v1beta1
 kind: BGPAdvertisement
 metadata:
-  name: empty
+  name: first-adv
   namespace: metallb-system
 spec:
+  ipAddressPools:
+    - first-pool
   peers:
     - routervlan0
   nodeSelectors:
   - matchLabels:
       kubernetes.io/hostname: ovn-worker
+---
+apiVersion: metallb.io/v1beta1
+kind: BGPAdvertisement
+metadata:
+  name: second-adv
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+    - second-pool
+  peers:
+    - routervlan1
+  nodeSelectors:
+  - matchLabels:
+      kubernetes.io/hostname: ovn-worker2
 
 

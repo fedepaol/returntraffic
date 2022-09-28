@@ -22,7 +22,25 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx
+  name: nginx1
+  annotations:
+    metallb.universe.tf/address-pool: first-pool
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: nginx
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx2
+  annotations:
+    metallb.universe.tf/address-pool: second-pool
 spec:
   ports:
   - name: http

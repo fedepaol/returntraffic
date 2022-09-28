@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 ### VRF for eth1 
 ip link add eth1vrf type vrf table 2
 ip link set dev eth1vrf up
@@ -22,7 +24,10 @@ ip addr add 192.169.1.2/24 dev eth1veth-vrf
 ip link set dev eth1veth-vrf master eth1vrf
 
 # vrf route to the service via eth1veth-def
-ip route add 192.168.1.1/32 via 192.169.1.1 table 2
+#### NOTE HERE WE ARE INJECTING THE CLUSTER IP TO ROUTE TO
+#### THE CLUSTER
+#### IT's the cluster ip because it's already dnatted
+ip route add $CLUSTERIP1 via 192.169.1.1 table 2
 
 ## VRF for eth2 
 ip link add eth2vrf type vrf table 3
@@ -46,10 +51,7 @@ ip addr add 192.169.2.2/24 dev eth2veth-vrf
 ip link set dev eth2veth-vrf master eth2vrf
 
 # vrf route to the service via eth1veth-def
-ip route add 192.168.2.1/32 via 192.169.2.1 table 3
-
-
-
+ip route add $CLUSTERIP2 via 192.169.2.1 table 3
 
 ip -4 rule add pref 32765 table local
 ip -4 rule del pref 0

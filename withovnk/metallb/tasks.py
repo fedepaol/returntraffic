@@ -496,6 +496,7 @@ def bgp_dev_env(ip_family, frr_volume_dir):
             "frrouting/frr:v7.5.1" % frr_volume_dir, echo=True)
     run("docker network connect vlan1 frr --ip 10.111.222.21")
     run("docker network connect external0 frr --ip 10.111.223.21")
+    run("docker network connect external1 frr --ip 10.111.224.21")
 
     if ip_family == "ipv4":
         peer_address = run('docker inspect -f "{{ '
