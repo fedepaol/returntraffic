@@ -122,11 +122,13 @@ Note: we are using the clusterip here because the routing happens before the un-
 
 This is enabled by running `./run_on_nodes.sh /node/setup_marking.sh`.
 
+```bash
 echo 200 device1 >> /etc/iproute2/rt_tables
 ip route add default via 10.111.221.21 table device1
 
 iptables -A PREROUTING -t mangle -s $CLUSTERIP1 -j MARK --set-mark 1
 ip rule add fwmark 1 table device1
+```
 
 Note again the clusterip is used, and the PREROUTING chain used because the traffic is dropped on the host from breth and
 needs to be routed to the right interface, so the marking must happen before the routing.
