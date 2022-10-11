@@ -27,7 +27,9 @@ ip link set dev eth1veth-vrf master eth1vrf
 #### NOTE HERE WE ARE INJECTING THE CLUSTER IP TO ROUTE TO
 #### THE CLUSTER
 #### IT's the cluster ip because it's already dnatted
-ip route add $CLUSTERIP1 via 192.169.1.1 table 2
+ip route add 10.96.0.0/16 via 192.169.1.1 table 2
+
+
 
 ## VRF for eth2 
 ip link add eth2vrf type vrf table 3
@@ -51,7 +53,7 @@ ip addr add 192.169.2.2/24 dev eth2veth-vrf
 ip link set dev eth2veth-vrf master eth2vrf
 
 # vrf route to the service via eth1veth-def
-ip route add $CLUSTERIP2 via 192.169.2.1 table 3
+ip route add 10.96.0.0/16 via 192.169.1.1 table 3
 
 ip -4 rule add pref 32765 table local
 ip -4 rule del pref 0
