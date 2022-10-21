@@ -1,0 +1,58 @@
+apiVersion: metallb.io/v1beta2
+kind: BGPPeer
+metadata:
+  name: routervlan0
+  namespace: metallb-system
+spec:
+  myASN: 64512
+  peerASN: 64512
+  peerAddress: 10.111.221.21
+---
+apiVersion: metallb.io/v1beta2
+kind: BGPPeer
+metadata:
+  name: routervlan1
+  namespace: metallb-system
+spec:
+  myASN: 64512
+  peerASN: 64512
+  peerAddress: 10.111.222.21
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: first-pool
+  namespace: metallb-system
+spec:
+  addresses:
+  - 192.168.10.0/24
+---
+apiVersion: metallb.io/v1beta1
+kind: BGPAdvertisement
+metadata:
+  name: first-adv
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+    - first-pool
+  peers:
+    - routervlan0
+  nodeSelectors:
+  - matchLabels:
+      kubernetes.io/hostname: ovn-worker
+---
+apiVersion: metallb.io/v1beta1
+kind: BGPAdvertisement
+metadata:
+  name: second-adv
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+    - first-pool
+  peers:
+    - routervlan1
+  nodeSelectors:
+  - matchLabels:
+      kubernetes.io/hostname: ovn-worker
+
+
