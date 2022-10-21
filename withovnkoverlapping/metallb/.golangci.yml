@@ -1,0 +1,13 @@
+linters:
+  enable:
+  - godot
+  - goimports
+linters-settings:
+  errcheck:
+    exclude: .golangci.exclude
+  godot:
+    scope: toplevel
+    capital: true
+    exclude:
+    - 'SPDX-License-Identifier.*'
+    - '\+groupName.*'
