@@ -4,6 +4,8 @@
 echo 200 toeth1 >> /etc/iproute2/rt_tables
 ip route add default via 192.169.1.2 table toeth1
 iptables -A PREROUTING -t mangle -s $CLUSTERIP1 -j MARK --set-mark 1
+#this is required for the return traffic of traffic originating from pods
+iptables -A PREROUTING -t mangle -s $PODIP -j MARK --set-mark 1
 
 # note: ths must have less priority than the 
 # from all lookup [l3mdev-table] rule otherwise it's

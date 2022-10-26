@@ -154,3 +154,23 @@ the steering is done to the leg of the veth pair which lives in the default vrf 
 
 In order to enable the routing via source,  `./run_on_nodes.sh /node/vrf/setup_sbr.sh`. On the other hand, for using marking
 and policy based routing:  `./run_on_nodes.sh /node/vrf/setup_marking.sh`.
+
+### Egress Traffic
+
+We also validate that the same logic can be applied to pods initiating the traffic using the "k8s.ovn.org/egress-service" annotation on the service. An "egress" pod is created and added to an "egress" service. 
+
+Running nc on client1 and trying to access it from the pod will work.
+
+In order to make it work, another rule must be added to the routing table of the VRF, because the egress traffic is S-NATed using a rule like:
+
+```bash
+-A OVN-KUBE-EGRESS-SVC -s 10.244.0.5/32 -m comment --comment "default/egress" -j SNAT --to-source 192.168.12.0
+```
+
+Becuase of the fact that the return traffic is un-dnatted, we need to set a route inside the vrf routing table to steer the traffic directed to the pods cidr to the default vrf.
+
+```bash
+ip route add 10.244.0.0/16 via 192.169.1.1 table 2
+```
+
+

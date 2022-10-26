@@ -19,6 +19,26 @@ spec:
           containerPort: 80
 
 ---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: egress
+spec:
+  selector:
+    matchLabels:
+      app: egress
+  template:
+    metadata:
+      labels:
+        app: egress
+    spec:
+      containers:
+      - name: egress
+        image: quay.io/fpaoline/fedoranet:1.0
+        command:
+          - sleep
+          - inf
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -49,4 +69,21 @@ spec:
     targetPort: 80
   selector:
     app: nginx
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: egress
+  annotations:
+    metallb.universe.tf/address-pool: third-pool
+    k8s.ovn.org/egress-service: '{"nodeSelector":{"matchLabels":{"kubernetes.io/hostname": "ovn-worker"}}}'
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: egress
   type: LoadBalancer

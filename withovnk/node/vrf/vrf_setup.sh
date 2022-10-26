@@ -28,8 +28,7 @@ ip link set dev eth1veth-vrf master eth1vrf
 #### THE CLUSTER
 #### IT's the cluster ip because it's already dnatted
 ip route add 10.96.0.0/16 via 192.169.1.1 table 2
-
-
+ip route add 10.244.0.0/16 via 192.169.1.1 table 2
 
 ## VRF for eth2 
 ip link add eth2vrf type vrf table 3
