@@ -87,3 +87,24 @@ spec:
   selector:
     app: egress
   type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: egressnosvc
+spec:
+  selector:
+    matchLabels:
+      app: egressnosvc
+  template:
+    metadata:
+      labels:
+        app: egressnosvc
+    spec:
+      containers:
+      - name: egressnosvc
+        image: quay.io/fpaoline/fedoranet:1.0
+        command:
+          - sleep
+          - inf
+

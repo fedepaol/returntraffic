@@ -28,7 +28,15 @@ ip link set dev eth1veth-vrf master eth1vrf
 #### THE CLUSTER
 #### IT's the cluster ip because it's already dnatted
 ip route add 10.96.0.0/16 via 192.169.1.1 table 2
+
+# Also, we add a route to the pods CIDR because of the egress
+# traffic originating from pods.
 ip route add 10.244.0.0/16 via 192.169.1.1 table 2
+
+# This is for egress traffic coming from pods. There is a masquerade
+# rule but it takes the ip of the veth leg in the default VRF. What
+# we want is to take the IP of the vlan
+iptables -t nat -A POSTROUTING -s 192.169.1.1 -j MASQUERADE
 
 ## VRF for eth2 
 ip link add eth2vrf type vrf table 3
@@ -52,11 +60,17 @@ ip addr add 192.169.2.2/24 dev eth2veth-vrf
 ip link set dev eth2veth-vrf master eth2vrf
 
 # vrf route to the service via eth1veth-def
-ip route add 10.96.0.0/16 via 192.169.1.1 table 3
+ip route add 10.96.0.0/16 via 192.169.2.1 table 3
+ip route add 10.244.0.0/16 via 192.169.2.1 table 2
 
 ip -4 rule add pref 32765 table local
 ip -4 rule del pref 0
 
+# This is for egress traffic coming from pods. There is a masquerade
+# rule but it takes the ip of the veth leg in the default VRF. What
+# we want is to take the IP of the vlan
+iptables -t nat -A POSTROUTING -s 192.169.2.1 -j MASQUERADE
+#
 # useful commands:
 # ip route show vrf red
 # ip route get 192.168.1.1 vrf red

@@ -174,3 +174,26 @@ ip route add 10.244.0.0/16 via 192.169.1.1 table 2
 ```
 
 
+### Egress Traffic steering from a generic pod
+
+This is the last POC, where we try to influence the path of the egress traffic
+based on the destination IP. Since the steering logic is based on the marking,
+any logic can be applied (namespace, pod selector) as long as OVNK exposes an
+API to do the marking based on various discriminators. In this POC, we
+mark the traffic coming from the `egressnosvc` pod looking at the destination
+IP.
+
+Another change that needs to be done to make this work is to add an additional
+masquerade rule to let the traffic take the VLAN IP, because by default the
+traffic is masqueraded using the IP of the veth leg belonging to the default
+VRF.
+
+Adding two rules like
+
+```bash
+iptables -t nat -A POSTROUTING -s 192.169.1.1 -j MASQUERADE
+```
+
+make the trick (where `192.169.1.1` is the IP of `eth1veth-def`, the leg of
+the veth pair living in the default VRF.
+
