@@ -8,6 +8,11 @@ interfaces:
           prefix-length: 24
       dhcp: false
       enabled: true
+    ipv6:
+      address:
+        - ip: fc00:f853:0ccd:e799::1
+          prefix-length: 124
+      enabled: true
     veth:
       peer: eth1veth-vrf
   - name: eth1veth-vrf
@@ -19,36 +24,62 @@ interfaces:
           prefix-length: 24
       dhcp: false
       enabled: true
+    ipv6:
+      address:
+        - ip: fc00:f853:0ccd:e799::2
+          prefix-length: 124
+      enabled: true
     veth:
       peer: eth1veth-def
-  - name: eth1
-    type: ethernet
+  - name: eth1.101
+    type: vlan
     state: up
+    vlan:
+      base-iface: eth1
+      id: 101
     ipv4:
       address:
         - ip: 10.111.221.11
           prefix-length: 24
       dhcp: false
       enabled: true
+    ipv6:
+      address:
+        - ip: fc00:f853:0ccd:e800::2
+          prefix-length: 124
+      enabled: true
+  - name: eth1
+    type: ethernet
+    state: up
   - name: eth1vrf
     type: vrf
     state: up
     vrf:
       port:
         - eth1veth-vrf
-        - eth1
+        - eth1.101
       route-table-id: 2
 routes:
   config:
     - destination: 0.0.0.0/0
       metric: 150
       next-hop-address: 10.111.221.21
-      next-hop-interface: eth1
+      next-hop-interface: eth1.101
+      table-id: 2
+    - destination: ::/0
+      metric: 150
+      next-hop-address: fc00:f853:0ccd:e800::21
+      next-hop-interface: eth1.101
       table-id: 2
     - destination: 0.0.0.0/0
       metric: 150
       next-hop-address: 192.169.2.2
-      next-hop-interface: eth1veth-vrf
+      next-hop-interface: eth1veth-def
+      table-id: 200
+    - destination: ::/0
+      metric: 150
+      next-hop-address: fc00:f853:0ccd:e799::2
+      next-hop-interface: eth1veth-def
       table-id: 200
 route-rules:
   config:
