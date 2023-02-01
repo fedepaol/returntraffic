@@ -1,0 +1,57 @@
+interfaces:
+  - name: ens8veth-def
+    type: veth
+    state: up
+    ipv4:
+      address:
+        - ip: 192.169.2.1
+          prefix-length: 24
+      dhcp: false
+      enabled: true
+    veth:
+      peer: ens8veth-vrf
+  - name: ens8veth-vrf
+    type: veth
+    state: up
+    ipv4:
+      address:
+        - ip: 192.169.2.2
+          prefix-length: 24
+      dhcp: false
+      enabled: true
+    veth:
+      peer: ens8veth-def
+  - name: ens8vrf
+    type: vrf
+    state: up
+    vrf:
+      port:
+        - ens8veth-vrf
+        - ens8
+      route-table-id: 2
+routes:
+  config:
+    - destination: 0.0.0.0/0
+      metric: 150
+      next-hop-address: 192.168.110.1
+      next-hop-interface: ens8
+      table-id: 2
+    - destination: 10.96.0.0/16
+      metric: 150
+      next-hop-address: 192.169.2.1
+      next-hop-interface: ens8veth-def
+      table-id: 2
+    - destination: 0.0.0.0/0
+      metric: 150
+      next-hop-address: 192.169.2.2
+      next-hop-interface: ens8veth-def
+      table-id: 200
+route-rules:
+  config:
+    - route-table: 255
+      priority: 32765
+      ip-from: 0.0.0.0
+    - route-table: 200
+      priority: 1001
+      ip-from: 0.0.0.0/0
+    
