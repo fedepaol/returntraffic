@@ -8,7 +8,7 @@ spec:
   maxUnavailable: 3 
   desiredState:
     interfaces:
-      - name: ens8veth-def
+      - name: ens9veth-def
         type: veth
         state: up
         ipv4:
@@ -18,8 +18,8 @@ spec:
           dhcp: false
           enabled: true
         veth:
-          peer: ens8veth-vrf
-      - name: ens8veth-vrf
+          peer: ens9veth-vrf
+      - name: ens9veth-vrf
         type: veth
         state: up
         ipv4:
@@ -29,37 +29,42 @@ spec:
           dhcp: false
           enabled: true
         veth:
-          peer: ens8veth-def
-      - name: ens8vrf
+          peer: ens9veth-def
+      - name: ens9vrf
         type: vrf
         state: up
         vrf:
           port:
-            - ens8veth-vrf
-            - ens8
+            - ens9veth-vrf
+            - ens9
           route-table-id: 2
+      - name: ens9
+        state: up
+        ipv4:
+          address:
+          - ip: 192.168.130.1
+            prefix-length: 24
+          dhcp: false
+          enabled: true
     routes:
       config:
         - destination: 0.0.0.0/0
           metric: 150
           next-hop-address: 192.168.110.1
-          next-hop-interface: ens8
+          next-hop-interface: ens9
           table-id: 2
         - destination: 10.96.0.0/16
           metric: 150
           next-hop-address: 192.169.2.1
-          next-hop-interface: ens8veth-def
+          next-hop-interface: ens9veth-def
           table-id: 2
         - destination: 0.0.0.0/0
           metric: 150
           next-hop-address: 192.169.2.2
-          next-hop-interface: ens8veth-def
+          next-hop-interface: ens9veth-def
           table-id: 200
     route-rules:
       config:
-        - route-table: 255
-          priority: 32765
-          ip-from: 0.0.0.0
         - route-table: 200
           priority: 1001
-          ip-from: 0.0.0.0/0
+          family: ipv4
