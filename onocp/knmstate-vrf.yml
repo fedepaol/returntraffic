@@ -4,7 +4,7 @@ metadata:
   name: vrfpolicy 
 spec:
   nodeSelector: 
-    kubernetes.io/hostname: fede-virt-worker-0.karmalabs.com 
+    vrf: "true"
   maxUnavailable: 3 
   desiredState:
     interfaces:
@@ -57,6 +57,18 @@ spec:
           metric: 150
           next-hop-address: 192.169.2.1
           next-hop-interface: ens9veth-def
+          table-id: 2
+          state: absent
+        - destination: 172.30.0.0/16
+          metric: 150
+          next-hop-address: 192.169.2.1
+          next-hop-interface: ens9veth-def
+          table-id: 2
+          state: absent
+        - destination: 172.30.0.0/16
+          metric: 150
+          next-hop-address: 192.169.2.1
+          next-hop-interface: ens9veth-vrf
           table-id: 2
         - destination: 0.0.0.0/0
           metric: 150

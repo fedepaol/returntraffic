@@ -7,6 +7,8 @@ using a machine config `localrulemcc.yaml`
 
 We deploy the 4.13 equivalent of knmstate (rust based) via the `deploy-nmstaterust.sh` script.
 
+Label the nodes to be impacted as vrf: enabled
+
 Apply the `knmstate-vrf.yml` configuration file.
 The current setup assignes a static ip to the interface we want to move in the vrf (ens9)
 192.168.130.1

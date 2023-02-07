@@ -6,7 +6,7 @@ metadata:
 spec:
   myASN: 100
   peerASN: 200
-  peerAddress: 192.168.130.2
+  peerAddress: 192.168.130.1
   vrf: ens9vrf
 ---
 apiVersion: metallb.io/v1beta1
@@ -30,38 +30,40 @@ spec:
     - frrviavrf
   nodeSelectors:
   - matchLabels:
-      kubernetes.io/hostname: fede-virt-worker-0.karmalabs.com
+    vrf: "true"
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: server
 spec:
   selector:
     matchLabels:
-      app: nginx
+      app: server
   template:
     metadata:
       labels:
-        app: nginx
+        app: server
     spec:
       containers:
-      - name: nginx
-        image: nginx:1
+      - name: server
+        image: quay.io/fpaoline/fedoranet:1.0
         ports:
         - name: http
-          containerPort: 80
+          containerPort: 30100
+        command: ["/bin/sh", "-c"]
+        args: ["sleep INF"] 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx1
+  name: server1
 spec:
   ports:
   - name: http
-    port: 80
+    port: 30100
     protocol: TCP
-    targetPort: 80
+    targetPort: 30100
   selector:
-    app: nginx
+    app: server
   type: LoadBalancer

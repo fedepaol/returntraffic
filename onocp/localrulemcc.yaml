@@ -15,7 +15,7 @@ spec:
   paused: false
   nodeSelector:
     matchLabels:
-      kubernetes.io/hostname: fede-virt-worker-0.karmalabs.com
+      vrf: "true"
 ---
 apiVersion: machineconfiguration.openshift.io/v1
 kind: MachineConfig

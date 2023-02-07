@@ -1,0 +1,18 @@
+apiVersion: nmstate.io/v1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  name: node0policy 
+spec:
+  nodeSelector: 
+    kubernetes.io/hostname: fede-virt-worker-0.karmalabs.com
+  maxUnavailable: 3 
+  desiredState:
+    interfaces:
+      - name: ens9
+        state: up
+        ipv4:
+          address:
+          - ip: 192.168.130.2
+            prefix-length: 24
+          dhcp: false
+          enabled: true
