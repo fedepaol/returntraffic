@@ -1,0 +1,47 @@
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfigPool
+metadata:
+  name: returntraffic
+  labels:
+    machineconfiguration.openshift.io/role: worker-cnf
+spec:
+  machineConfigSelector:
+    matchExpressions:
+      - {
+          key: machineconfiguration.openshift.io/role,
+          operator: In,
+          values: [returntraffic, worker],
+        }
+  paused: false
+  nodeSelector:
+    matchLabels:
+      kubernetes.io/hostname: fede-virt-worker-0.karmalabs.com
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  labels:
+    machineconfiguration.openshift.io/role: returntraffic
+  name: localrule-priority
+spec:
+  config:
+    ignition:
+      version: 2.2.0
+    systemd:
+      units:
+        - contents: |
+            [Unit]
+            Description=Change the priority of the local routing rule
+            Requires=ovs-configuration.service
+            After=ovs-configuration.service
+            Before=kubelet.service crio.service
+            [Service]
+            Type=oneshot
+            RemainAfterExit=yes
+            ExecStart=/bin/bash -c 'ip -4 rule add pref 32765 table local'
+            ExecStart=/bin/bash -c 'ip -4 rule del pref 0'
+            
+            [Install]
+            WantedBy=multi-user.target
+          enabled: true
+          name: localrule.service

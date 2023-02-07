@@ -42,7 +42,7 @@ spec:
         state: up
         ipv4:
           address:
-          - ip: 192.168.130.1
+          - ip: 192.168.130.2
             prefix-length: 24
           dhcp: false
           enabled: true
@@ -63,8 +63,4 @@ spec:
           next-hop-address: 192.169.2.2
           next-hop-interface: ens9veth-def
           table-id: 200
-    route-rules:
-      config:
-        - route-table: 200
-          priority: 1001
-          family: ipv4
+
