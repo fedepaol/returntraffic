@@ -29,13 +29,19 @@ spec:
   peers:
     - frrviavrf
   nodeSelectors:
-  - matchLabels:
-    vrf: "true"
+    - matchLabels:
+      vrf: "true"
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: test
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: server
+  namespace: test
 spec:
   selector:
     matchLabels:
@@ -58,6 +64,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: server1
+  namespace: test
 spec:
   ports:
   - name: http

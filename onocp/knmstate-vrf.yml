@@ -38,14 +38,6 @@ spec:
             - ens9veth-vrf
             - ens9
           route-table-id: 2
-      - name: ens9
-        state: up
-        ipv4:
-          address:
-          - ip: 192.168.130.2
-            prefix-length: 24
-          dhcp: false
-          enabled: true
     routes:
       config:
         - destination: 0.0.0.0/0
@@ -53,18 +45,6 @@ spec:
           next-hop-address: 192.168.110.1
           next-hop-interface: ens9
           table-id: 2
-        - destination: 10.96.0.0/16
-          metric: 150
-          next-hop-address: 192.169.2.1
-          next-hop-interface: ens9veth-def
-          table-id: 2
-          state: absent
-        - destination: 172.30.0.0/16
-          metric: 150
-          next-hop-address: 192.169.2.1
-          next-hop-interface: ens9veth-def
-          table-id: 2
-          state: absent
         - destination: 172.30.0.0/16
           metric: 150
           next-hop-address: 192.169.2.1
@@ -75,4 +55,9 @@ spec:
           next-hop-address: 192.169.2.2
           next-hop-interface: ens9veth-def
           table-id: 200
+    route-rules: # Note this is gonna be set by ovnk and depends on the clusterip
+      config:
+        - ip-from: 172.30.80.81 
+          route-table: 200
+          priority: 1002
 
