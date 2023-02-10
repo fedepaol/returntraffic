@@ -9,7 +9,7 @@ Also, run `oc adm policy add-scc-to-user privileged -n metallb-system -z speaker
 
 ## KNmstate
 
-We deploy the 4.13 equivalent of knmstate (rust based) via the [./deploy/deploy-nmstaterust.sh] script.
+We deploy the 4.13 equivalent of knmstate (rust based) via the [./deploy/deploy-nmstaterust.sh](./deploy/deploy-nmstaterust.sh) script.
 
 # Configure
 
@@ -20,25 +20,25 @@ The two nodes must be labeled with `vrf: enabled`.
 
 ## Changing the priority of the local routing table
 
-This is currently not possible with nmstate (see [./limitations.md]), so a workaround is to
-apply those changes via mco with [./configure/localrulemcc.yaml].
+This is currently not possible with nmstate (see [./limitations.md](./limitations.md)), so a workaround is to
+apply those changes via mco with [./configure/localrulemcc.yaml](./configure/localrulemcc.yaml).
 
 ## Setting up the IP of the nodes
 
 One `NodeNetworkConfigurationPolicy` per node where we set the static IP of the interface we want to
 add to the VRF.
-In this case the files are [./configure/knmstate-node0.yaml] and [./configure/knmstate-node1.yaml].
+In this case the files are [./configure/knmstate-node0.yaml](./configure/knmstate-node0.yaml) and [./configure/knmstate-node1.yaml](./configure/knmstate-node1.yaml).
 
 This assumes the interface to be consistently `ens9` and a CIDR of `192.168.130.0/24`.
 
 ## Setting up the vrfs, the veth pairs and the routes
 
-This is done via the [./configure/knmstate-vrf.yml], which is meant to be node independent, assuming
+This is done via the [./configure/knmstate-vrf.yml](./configure/knmstate-vrf.yml), which is meant to be node independent, assuming
 all the nodes have the same interface we want to embed in a VRF.
 
 ## Configuring MetalLB and run a service
 
-This is done via the [./configure/metallbconfig.yaml] file, where we do setup the BGPPeer `192.168.130.1`,
+This is done via the [./configure/metallbconfig.yaml](./configure/metallbconfig.yaml) file, where we do setup the BGPPeer `192.168.130.1`,
 the IPAddressPool and the BGPAdvertisement.
 
 Also, we create a service with a pod where we can run nc from (port 30100).
