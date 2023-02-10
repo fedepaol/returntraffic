@@ -8,6 +8,13 @@ spec:
   peerASN: 200
   peerAddress: 192.168.130.1
   vrf: ens9vrf
+  bfdProfile: testprofile
+---
+apiVersion: metallb.io/v1beta1
+kind: BFDProfile
+metadata:
+  name: testprofile
+  namespace: metallb-system
 ---
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
