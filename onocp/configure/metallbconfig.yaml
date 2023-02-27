@@ -37,7 +37,7 @@ spec:
     - frrviavrf
   nodeSelectors:
     - matchLabels:
-      vrf: "true"
+        egress-service.k8s.ovn.org/test-server1: ""
 ---
 apiVersion: v1
 kind: Namespace

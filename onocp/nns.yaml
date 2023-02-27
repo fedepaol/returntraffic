@@ -1,0 +1,1045 @@
+apiVersion: nmstate.io/v1beta1
+kind: NodeNetworkState
+metadata:
+  creationTimestamp: "2023-02-01T13:34:38Z"
+  generation: 1
+  labels:
+    nmstate.io/force-nns-refresh: "1675863246832900390"
+  name: fede-virt-worker-0.karmalabs.com
+  ownerReferences:
+  - apiVersion: v1
+    kind: Node
+    name: fede-virt-worker-0.karmalabs.com
+    uid: e8eeb4be-5c42-4d43-b3da-4c5566cd50e6
+  resourceVersion: "5578229"
+  uid: eb79a164-3090-45d1-b414-8e0d4168db2d
+status:
+  currentState:
+    dns-resolver:
+      config:
+        search: null
+        server: null
+      running:
+        search:
+        - lab.eng.tlv2.redhat.com
+        - eng.lab.tlv.redhat.com
+        - mgmt.lab.eng.tlv2.redhat.com
+        - tlv.redhat.com
+        - tlv2.redhat.com
+        - redhat.com
+        - fede-net
+        server:
+        - 10.47.242.10
+        - 10.45.248.15
+        - 192.168.110.1
+    interfaces:
+    - accept-all-mac-addresses: false
+      ethtool:
+        feature:
+          highdma: true
+          rx-checksum: true
+          rx-gro: true
+          rx-gro-list: false
+          rx-udp-gro-forwarding: true
+          rx-vlan-hw-parse: true
+          rx-vlan-stag-hw-parse: true
+          tx-checksum-ip-generic: true
+          tx-checksum-sctp: true
+          tx-generic-segmentation: true
+          tx-gre-csum-segmentation: true
+          tx-gre-segmentation: true
+          tx-gso-list: true
+          tx-ipxip4-segmentation: true
+          tx-ipxip6-segmentation: true
+          tx-nocache-copy: false
+          tx-scatter-gather-fraglist: true
+          tx-sctp-segmentation: true
+          tx-tcp-ecn-segmentation: true
+          tx-tcp-mangleid-segmentation: true
+          tx-tcp-segmentation: true
+          tx-tcp6-segmentation: true
+          tx-udp-segmentation: true
+          tx-udp_tnl-csum-segmentation: true
+          tx-udp_tnl-segmentation: true
+          tx-vlan-hw-insert: true
+          tx-vlan-stag-hw-insert: true
+      ipv4:
+        enabled: false
+      ipv6:
+        address:
+        - ip: fe80::686a:34ff:fe6d:753e
+          prefix-length: 64
+        enabled: true
+      mac-address: 6A:6A:34:6D:75:3E
+      max-mtu: 65535
+      min-mtu: 68
+      mtu: 1400
+      name: 049768f1f789858
+      state: ignore
+      type: veth
+    - accept-all-mac-addresses: false
+      ethtool:
+        feature:
+          highdma: true
+          rx-checksum: true
+          rx-gro: true
+          rx-gro-list: false
+          rx-udp-gro-forwarding: true
+          rx-vlan-hw-parse: true
+          rx-vlan-stag-hw-parse: true
+          tx-checksum-ip-generic: true
+          tx-checksum-sctp: true
+          tx-generic-segmentation: true
+          tx-gre-csum-segmentation: true
+          tx-gre-segmentation: true
+          tx-gso-list: true
+          tx-ipxip4-segmentation: true
+          tx-ipxip6-segmentation: true
+          tx-nocache-copy: false
+          tx-scatter-gather-fraglist: true
+          tx-sctp-segmentation: true
+          tx-tcp-ecn-segmentation: true
+          tx-tcp-mangleid-segmentation: true
+          tx-tcp-segmentation: true
+          tx-tcp6-segmentation: true
+          tx-udp-segmentation: true
+          tx-udp_tnl-csum-segmentation: true
+          tx-udp_tnl-segmentation: true
+          tx-vlan-hw-insert: true
+          tx-vlan-stag-hw-insert: true
+      ipv4:
+        enabled: false
+      ipv6:
+        address:
+        - ip: fe80::2c17:89ff:fe5d:4a33
+          prefix-length: 64
+        enabled: true
+      mac-address: 2E:17:89:5D:4A:33
+      max-mtu: 65535
+      min-mtu: 68
+      mtu: 1400
+      name: 21243fe97721291
+      state: ignore
+      type: veth
+    - accept-all-mac-addresses: false
+      ethtool:
+        feature:
+          highdma: true
+          rx-checksum: true
+          rx-gro: true
+          rx-gro-list: false
+          rx-udp-gro-forwarding: true
+          rx-vlan-hw-parse: true
+          rx-vlan-stag-hw-parse: true
+          tx-checksum-ip-generic: true
+          tx-checksum-sctp: true
+          tx-generic-segmentation: true
+          tx-gre-csum-segmentation: true
+          tx-gre-segmentation: true
+          tx-gso-list: true
+          tx-ipxip4-segmentation: true
+          tx-ipxip6-segmentation: true
+          tx-nocache-copy: false
+          tx-scatter-gather-fraglist: true
+          tx-sctp-segmentation: true
+          tx-tcp-ecn-segmentation: true
+          tx-tcp-mangleid-segmentation: true
+          tx-tcp-segmentation: true
+          tx-tcp6-segmentation: true
+          tx-udp-segmentation: true
+          tx-udp_tnl-csum-segmentation: true
+          tx-udp_tnl-segmentation: true
+          tx-vlan-hw-insert: true
+          tx-vlan-stag-hw-insert: true
+      ipv4:
+        enabled: false
+      ipv6:
+        address:
+        - ip: fe80::283a:3bff:fe26:ceff
+          prefix-length: 64
+        enabled: true
+      mac-address: 2A:3A:3B:26:CE:FF
+      max-mtu: 65535
+      min-mtu: 68
+      mtu: 1400
+      name: 30f0e1334be200b
+      state: ignore
+      type: veth
+    - accept-all-mac-addresses: false
+      ethtool:
+        feature:
+          highdma: true
+          rx-checksum: true
+          rx-gro: true
+          rx-gro-list: false
+          rx-udp-gro-forwarding: true
+          rx-vlan-hw-parse: true
+          rx-vlan-stag-hw-parse: true
+          tx-checksum-ip-generic: true
+          tx-checksum-sctp: true
+          tx-generic-segmentation: true
+          tx-gre-csum-segmentation: true
+          tx-gre-segmentation: true
+          tx-gso-list: true
+          tx-ipxip4-segmentation: true
+          tx-ipxip6-segmentation: true
+          tx-nocache-copy: false
+          tx-scatter-gather-fraglist: true
+          tx-sctp-segmentation: true
+          tx-tcp-ecn-segmentation: true
+          tx-tcp-mangleid-segmentation: true
+          tx-tcp-segmentation: true
+          tx-tcp6-segmentation: true
+          tx-udp-segmentation: true
+          tx-udp_tnl-csum-segmentation: true
+          tx-udp_tnl-segmentation: true
+          tx-vlan-hw-insert: true
+          tx-vlan-stag-hw-insert: true
+      ipv4:
+        enabled: false
+      ipv6:
+        address:
+        - ip: fe80::9c5f:68ff:fe5d:10fb
+          prefix-length: 64
+        enabled: true
+      mac-address: 9E:5F:68:5D:10:FB
+      max-mtu: 65535
+      min-mtu: 68
+      mtu: 1400
+      name: 564a5becbc51d5f
+      state: ignore
+      type: veth
+    - accept-all-mac-addresses: false
+      ethtool:
+        feature:
+          highdma: true
+          rx-checksum: true
+          rx-gro: true
+          rx-gro-list: false
+          rx-udp-gro-forwarding: true
+          rx-vlan-hw-parse: true
+          rx-vlan-stag-hw-parse: true
+          tx-checksum-ip-generic: true
+          tx-checksum-sctp: true
+          tx-generic-segmentation: true
+          tx-gre-csum-segmentation: true
+          tx-gre-segmentation: true
+          tx-gso-list: true
+          tx-ipxip4-segmentation: true
+          tx-ipxip6-segmentation: true
+          tx-nocache-copy: false
+          tx-scatter-gather-fraglist: true
+          tx-sctp-segmentation: true
+          tx-tcp-ecn-segmentation: true
+          tx-tcp-mangleid-segmentation: true
+          tx-tcp-segmentation: true
+          tx-tcp6-segmentation: true
+          tx-udp-segmentation: true
+          tx-udp_tnl-csum-segmentation: true
+          tx-udp_tnl-segmentation: true
+          tx-vlan-hw-insert: true
+          tx-vlan-stag-hw-insert: true
+      ipv4:
+        enabled: false
+      ipv6:
+        address:
+        - ip: fe80::d44d:e6ff:fe2a:cad0
+          prefix-length: 64
+        enabled: true
+      mac-address: D6:4D:E6:2A:CA:D0
+      max-mtu: 65535
+      min-mtu: 68
+      mtu: 1400
+      name: 7f61c5fa242c940
+      state: ignore
+      type: veth
+    - accept-all-mac-addresses: false
+      ethtool:
+        feature:
+          highdma: true
+          rx-checksum: true
+          rx-gro: true
+          rx-gro-list: false
+          rx-udp-gro-forwarding: true
+          rx-vlan-hw-parse: true
+          rx-vlan-stag-hw-parse: true
+          tx-checksum-ip-generic: true
+          tx-checksum-sctp: true
+          tx-generic-segmentation: true
+          tx-gre-csum-segmentation: true
+          tx-gre-segmentation: true
+          tx-gso-list: true
+          tx-ipxip4-segmentation: true
+          tx-ipxip6-segmentation: true
+          tx-nocache-copy: false
+          tx-scatter-gather-fraglist: true
+          tx-sctp-segmentation: true
+          tx-tcp-ecn-segmentation: true
+          tx-tcp-mangleid-segmentation: true
+          tx-tcp-segmentation: true
+          tx-tcp6-segmentation: true
+          tx-udp-segmentation: true
+          tx-udp_tnl-csum-segmentation: true
+          tx-udp_tnl-segmentation: true
+          tx-vlan-hw-insert: true
+          tx-vlan-stag-hw-insert: true
+      ipv4:
+        enabled: false
+      ipv6:
+        address:
+        - ip: fe80::6c81:8dff:fe13:ccd7
+          prefix-length: 64
+        enabled: true
+      mac-address: 6E:81:8D:13:CC:D7
+      max-mtu: 65535
+      min-mtu: 68
+      mtu: 1400
+      name: b7e6baef4ddc02f
+      state: ignore
+      type: veth
+    - accept-all-mac-addresses: false
+      ethtool:
+        feature:
+          highdma: true
+          rx-checksum: true
+          rx-gro: true
+          rx-gro-list: false
+          rx-udp-gro-forwarding: true
+          rx-vlan-hw-parse: true
+          rx-vlan-stag-hw-parse: true
+          tx-checksum-ip-generic: true
+          tx-checksum-sctp: true
+          tx-generic-segmentation: true
+          tx-gre-csum-segmentation: true
+          tx-gre-segmentation: true
+          tx-gso-list: true
+          tx-ipxip4-segmentation: true
+          tx-ipxip6-segmentation: true
+          tx-nocache-copy: false
+          tx-scatter-gather-fraglist: true
+          tx-sctp-segmentation: true
+          tx-tcp-ecn-segmentation: true
+          tx-tcp-mangleid-segmentation: true
+          tx-tcp-segmentation: true
+          tx-tcp6-segmentation: true
+          tx-udp-segmentation: true
+          tx-udp_tnl-csum-segmentation: true
+          tx-udp_tnl-segmentation: true
+          tx-vlan-hw-insert: true
+          tx-vlan-stag-hw-insert: true
+      ipv4:
+        enabled: false
+      ipv6:
+        address:
+        - ip: fe80::a4b2:d7ff:fed9:3047
+          prefix-length: 64
+        enabled: true
+      mac-address: A6:B2:D7:D9:30:47
+      max-mtu: 65535
+      min-mtu: 68
+      mtu: 1400
+      name: bc89835ec5c56c4
+      state: ignore
+      type: veth
+    - bridge:
+        options:
+          datapath: ""
+          fail-mode: ""
+          mcast-snooping-enable: false
+          rstp: false
+          stp: false
+        port:
+        - name: br-ex
+        - name: ens3
+        - name: patch-br-ex_fede-virt-worker-0.karmalabs.com-to-br-int
+      ipv4:
+        auto-dns: true
+        auto-gateway: true
+        auto-route-table-id: 0
+        auto-routes: true
+        dhcp: true
+        enabled: true
+      ipv6:
+        addr-gen-mode: stable-privacy
+        auto-dns: true
+        auto-gateway: true
+        auto-route-table-id: 0
+        auto-routes: true
+        autoconf: true
+        dhcp: true
+        enabled: true
+      lldp:
+        enabled: false
+      name: br-ex
+      ovs-db:
+        external_ids: {}
+        other_config:
+          hwaddr: 52:54:00:08:86:22
+      state: up
+      type: ovs-bridge
+      wait-ip: any
+    - accept-all-mac-addresses: false
+      ethtool:
+        feature:
+          highdma: true
+          rx-gro: true
+          rx-gro-list: false
+          rx-udp-gro-forwarding: false
+          tx-checksum-ip-generic: true
+          tx-generic-segmentation: true
+          tx-gre-csum-segmentation: true
+          tx-gre-segmentation: true
+          tx-gso-list: true
+          tx-ipxip4-segmentation: true
+          tx-ipxip6-segmentation: true
+          tx-nocache-copy: false
+          tx-scatter-gather-fraglist: true
+          tx-sctp-segmentation: true
+          tx-tcp-ecn-segmentation: true
+          tx-tcp-mangleid-segmentation: true
+          tx-tcp-segmentation: true
+          tx-tcp6-segmentation: true
+          tx-udp-segmentation: true
+          tx-udp_tnl-csum-segmentation: true
+          tx-udp_tnl-segmentation: true
+          tx-vlan-hw-insert: true
+          tx-vlan-stag-hw-insert: true
+      ipv4:
+        address:
+        - ip: 10.46.55.239
+          prefix-length: 24
+        - ip: 169.254.169.2
+          prefix-length: 29
+        auto-dns: true
+        auto-gateway: true
+        auto-route-metric: 48
+        auto-route-table-id: 0
+        auto-routes: true
+        dhcp: true
+        enabled: true
+      ipv6:
+        addr-gen-mode: eui64
+        address:
+        - ip: 2620:52:0:2e37:5054:ff:fe08:8622
+          prefix-length: 64
+        - ip: fe80::5054:ff:fe08:8622
+          prefix-length: 64
+        auto-dns: true
+        auto-gateway: true
+        auto-route-metric: 48
+        auto-route-table-id: 0
+        auto-routes: true
+        autoconf: true
+        dhcp: true
+        enabled: true
+      lldp:
+        enabled: false
+      mac-address: 52:54:00:08:86:22
+      max-mtu: 65535
+      min-mtu: 68
+      mtu: 1500
+      name: br-ex
+      state: up
+      type: ovs-interface
+      wait-ip: ipv4+ipv6
+    - accept-all-mac-addresses: false
+      ethtool:
+        feature:
+          highdma: true
+          rx-gro: true
+          rx-gro-list: false
+          rx-udp-gro-forwarding: false
+          tx-checksum-ip-generic: true
+          tx-generic-segmentation: true
+          tx-gre-csum-segmentation: true
+          tx-gre-segmentation: true
+          tx-gso-list: true
+          tx-ipxip4-segmentation: true
+          tx-ipxip6-segmentation: true
+          tx-nocache-copy: false
+          tx-scatter-gather-fraglist: true
+          tx-sctp-segmentation: true
+          tx-tcp-ecn-segmentation: true
+          tx-tcp-mangleid-segmentation: true
+          tx-tcp-segmentation: true
+          tx-tcp6-segmentation: true
+          tx-udp-segmentation: true
+          tx-udp_tnl-csum-segmentation: true
+          tx-udp_tnl-segmentation: true
+          tx-vlan-hw-insert: true
+          tx-vlan-stag-hw-insert: true
+      ipv4:
+        enabled: false
+      ipv6:
+        enabled: false
+      mac-address: CA:22:F0:1D:9C:ED
+      max-mtu: 65535
+      min-mtu: 68
+      mtu: 1400
+      name: br-int
+      state: ignore
+      type: ovs-interface
+    - accept-all-mac-addresses: false
+      ethtool:
+        feature:
+          highdma: true
+          rx-checksum: true
+          rx-gro: true
+          rx-gro-list: false
+          rx-udp-gro-forwarding: true
+          rx-vlan-hw-parse: true
+          rx-vlan-stag-hw-parse: true
+          tx-checksum-ip-generic: true
+          tx-checksum-sctp: true
+          tx-generic-segmentation: true
+          tx-gre-csum-segmentation: true
+          tx-gre-segmentation: true
+          tx-gso-list: true
+          tx-ipxip4-segmentation: true
+          tx-ipxip6-segmentation: true
+          tx-nocache-copy: false
+          tx-scatter-gather-fraglist: true
+          tx-sctp-segmentation: true
+          tx-tcp-ecn-segmentation: true
+          tx-tcp-mangleid-segmentation: true
+          tx-tcp-segmentation: true
+          tx-tcp6-segmentation: true
+          tx-udp-segmentation: true
+          tx-udp_tnl-csum-segmentation: true
+          tx-udp_tnl-segmentation: true
+          tx-vlan-hw-insert: true
+          tx-vlan-stag-hw-insert: true
+      ipv4:
+        enabled: false
+      ipv6:
+        address:
+        - ip: fe80::c49d:85ff:fe79:ba4c
+          prefix-length: 64
+        enabled: true
+      mac-address: C6:9D:85:79:BA:4C
+      max-mtu: 65535
+      min-mtu: 68
+      mtu: 1400
+      name: e656939ed0b1695
+      state: ignore
+      type: veth
+    - accept-all-mac-addresses: false
+      ethernet:
+        auto-negotiation: false
+      ethtool:
+        feature:
+          rx-gro: true
+          rx-gro-list: false
+          rx-udp-gro-forwarding: true
+          tx-checksum-ip-generic: true
+          tx-generic-segmentation: true
+          tx-nocache-copy: false
+          tx-tcp-ecn-segmentation: true
+          tx-tcp-mangleid-segmentation: false
+          tx-tcp-segmentation: true
+          tx-tcp6-segmentation: true
+        ring:
+          rx: 256
+          rx-max: 256
+          tx: 256
+          tx-max: 256
+      ipv4:
+        enabled: false
+      ipv6:
+        enabled: false
+      lldp:
+        enabled: false
+      mac-address: 52:54:00:08:86:22
+      max-mtu: 65535
+      min-mtu: 68
+      mtu: 1500
+      name: ens3
+      state: up
+      type: ethernet
+    - accept-all-mac-addresses: false
+      ethernet:
+        auto-negotiation: false
+      ethtool:
+        feature:
+          rx-gro: true
+          rx-gro-list: false
+          rx-udp-gro-forwarding: false
+          tx-checksum-ip-generic: true
+          tx-generic-segmentation: true
+          tx-nocache-copy: false
+          tx-tcp-ecn-segmentation: true
+          tx-tcp-mangleid-segmentation: true
+          tx-tcp-segmentation: true
+          tx-tcp6-segmentation: true
+        ring:
+          rx: 256
+          rx-max: 256
+          tx: 256
+          tx-max: 256
+      ipv4:
+        address:
+        - ip: 192.168.110.222
+          prefix-length: 24
+        auto-dns: true
+        auto-gateway: true
+        auto-route-table-id: 0
+        auto-routes: true
+        dhcp: true
+        enabled: true
+      ipv6:
+        addr-gen-mode: eui64
+        address:
+        - ip: fe80::5054:ff:fe73:1a70
+          prefix-length: 64
+        auto-dns: true
+        auto-gateway: true
+        auto-route-table-id: 0
+        auto-routes: true
+        autoconf: true
+        dhcp: true
+        enabled: true
+      lldp:
+        enabled: false
+      mac-address: 52:54:00:73:1A:70
+      max-mtu: 65535
+      min-mtu: 68
+      mtu: 1500
+      name: ens8
+      state: up
+      type: ethernet
+      wait-ip: ipv4
+    - accept-all-mac-addresses: false
+      ethernet:
+        auto-negotiation: false
+      ethtool:
+        feature:
+          rx-gro: true
+          rx-gro-list: false
+          rx-udp-gro-forwarding: false
+          tx-checksum-ip-generic: true
+          tx-generic-segmentation: true
+          tx-nocache-copy: false
+          tx-tcp-ecn-segmentation: true
+          tx-tcp-mangleid-segmentation: false
+          tx-tcp-segmentation: true
+          tx-tcp6-segmentation: true
+        ring:
+          rx: 256
+          rx-max: 256
+          tx: 256
+          tx-max: 256
+      ipv4:
+        address:
+        - ip: 192.168.130.2
+          prefix-length: 24
+        dhcp: false
+        enabled: true
+      ipv6:
+        autoconf: false
+        dhcp: false
+        enabled: false
+      lldp:
+        enabled: false
+      mac-address: 52:54:00:61:03:48
+      max-mtu: 65535
+      min-mtu: 68
+      mtu: 1500
+      name: ens9
+      state: up
+      type: ethernet
+      wait-ip: any
+    - accept-all-mac-addresses: false
+      ethtool:
+        feature:
+          highdma: true
+          rx-checksum: true
+          rx-gro: false
+          rx-gro-list: false
+          rx-udp-gro-forwarding: false
+          rx-vlan-hw-parse: true
+          rx-vlan-stag-hw-parse: true
+          tx-checksum-ip-generic: true
+          tx-checksum-sctp: true
+          tx-generic-segmentation: true
+          tx-gre-csum-segmentation: true
+          tx-gre-segmentation: true
+          tx-gso-list: true
+          tx-ipxip4-segmentation: true
+          tx-ipxip6-segmentation: true
+          tx-nocache-copy: false
+          tx-scatter-gather-fraglist: true
+          tx-sctp-segmentation: true
+          tx-tcp-ecn-segmentation: true
+          tx-tcp-mangleid-segmentation: true
+          tx-tcp-segmentation: true
+          tx-tcp6-segmentation: true
+          tx-udp-segmentation: true
+          tx-udp_tnl-csum-segmentation: true
+          tx-udp_tnl-segmentation: true
+          tx-vlan-hw-insert: true
+          tx-vlan-stag-hw-insert: true
+      ipv4:
+        address:
+        - ip: 192.169.2.1
+          prefix-length: 24
+        dhcp: false
+        enabled: true
+      ipv6:
+        autoconf: false
+        dhcp: false
+        enabled: false
+      lldp:
+        enabled: false
+      mac-address: A2:66:DF:3B:C7:AE
+      max-mtu: 65535
+      min-mtu: 68
+      mtu: 1500
+      name: ens9veth-def
+      state: up
+      type: veth
+      veth:
+        peer: ens9veth-vrf
+      wait-ip: any
+    - accept-all-mac-addresses: false
+      ethtool:
+        feature:
+          highdma: true
+          rx-checksum: true
+          rx-gro: false
+          rx-gro-list: false
+          rx-udp-gro-forwarding: false
+          rx-vlan-hw-parse: true
+          rx-vlan-stag-hw-parse: true
+          tx-checksum-ip-generic: true
+          tx-checksum-sctp: true
+          tx-generic-segmentation: true
+          tx-gre-csum-segmentation: true
+          tx-gre-segmentation: true
+          tx-gso-list: true
+          tx-ipxip4-segmentation: true
+          tx-ipxip6-segmentation: true
+          tx-nocache-copy: false
+          tx-scatter-gather-fraglist: true
+          tx-sctp-segmentation: true
+          tx-tcp-ecn-segmentation: true
+          tx-tcp-mangleid-segmentation: true
+          tx-tcp-segmentation: true
+          tx-tcp6-segmentation: true
+          tx-udp-segmentation: true
+          tx-udp_tnl-csum-segmentation: true
+          tx-udp_tnl-segmentation: true
+          tx-vlan-hw-insert: true
+          tx-vlan-stag-hw-insert: true
+      ipv4:
+        address:
+        - ip: 192.169.2.2
+          prefix-length: 24
+        dhcp: false
+        enabled: true
+      ipv6:
+        autoconf: false
+        dhcp: false
+        enabled: false
+      lldp:
+        enabled: false
+      mac-address: B2:60:78:F8:35:9B
+      max-mtu: 65535
+      min-mtu: 68
+      mtu: 1500
+      name: ens9veth-vrf
+      state: up
+      type: veth
+      veth:
+        peer: ens9veth-def
+      wait-ip: any
+    - accept-all-mac-addresses: false
+      ethtool:
+        feature:
+          highdma: true
+          rx-checksum: true
+          rx-gro: true
+          rx-gro-list: false
+          rx-udp-gro-forwarding: false
+          tx-checksum-ip-generic: true
+          tx-checksum-sctp: true
+          tx-generic-segmentation: true
+          tx-gso-list: true
+          tx-nocache-copy: false
+          tx-scatter-gather-fraglist: true
+          tx-sctp-segmentation: true
+          tx-tcp-ecn-segmentation: true
+          tx-tcp-mangleid-segmentation: true
+          tx-tcp-segmentation: true
+          tx-tcp6-segmentation: true
+          tx-udp-segmentation: true
+      ipv4:
+        dhcp: false
+        enabled: false
+      ipv6:
+        autoconf: false
+        dhcp: false
+        enabled: false
+      lldp:
+        enabled: false
+      mac-address: 86:D7:6B:A0:C0:12
+      max-mtu: 65575
+      min-mtu: 1280
+      mtu: 65575
+      name: ens9vrf
+      state: up
+      type: vrf
+      vrf:
+        port:
+        - ens9
+        - ens9veth-vrf
+        route-table-id: 2
+      wait-ip: any
+    - accept-all-mac-addresses: false
+      ethernet: {}
+      ethtool:
+        feature:
+          rx-checksum: true
+          rx-gro: true
+          rx-gro-list: false
+          rx-udp-gro-forwarding: false
+          tx-checksum-ip-generic: true
+          tx-generic-segmentation: true
+          tx-gso-list: true
+          tx-nocache-copy: false
+          tx-scatter-gather-fraglist: true
+          tx-sctp-segmentation: true
+          tx-tcp-ecn-segmentation: true
+          tx-tcp-mangleid-segmentation: true
+          tx-tcp-segmentation: true
+          tx-tcp6-segmentation: true
+          tx-udp-segmentation: true
+      ipv4:
+        enabled: false
+      ipv6:
+        address:
+        - ip: fe80::a08e:66ff:fe88:eeee
+          prefix-length: 64
+        enabled: true
+      mac-address: A2:8E:66:88:EE:EE
+      max-mtu: 65465
+      min-mtu: 68
+      mtu: 65000
+      name: genev_sys_6081
+      state: up
+      type: ethernet
+    - accept-all-mac-addresses: false
+      ethtool:
+        feature:
+          rx-gro: true
+          rx-gro-list: false
+          rx-udp-gro-forwarding: false
+          tx-generic-segmentation: true
+          tx-gso-list: true
+          tx-sctp-segmentation: true
+          tx-tcp-ecn-segmentation: true
+          tx-tcp-mangleid-segmentation: true
+          tx-tcp-segmentation: true
+          tx-tcp6-segmentation: true
+          tx-udp-segmentation: true
+      ipv4:
+        address:
+        - ip: 127.0.0.1
+          prefix-length: 8
+        enabled: true
+      ipv6:
+        address:
+        - ip: ::1
+          prefix-length: 128
+        enabled: true
+      mac-address: "00:00:00:00:00:00"
+      mtu: 65536
+      name: lo
+      state: ignore
+      type: loopback
+    - accept-all-mac-addresses: false
+      ethtool:
+        feature:
+          highdma: true
+          rx-gro: true
+          rx-gro-list: false
+          rx-udp-gro-forwarding: false
+          tx-checksum-ip-generic: true
+          tx-generic-segmentation: true
+          tx-gre-csum-segmentation: true
+          tx-gre-segmentation: true
+          tx-gso-list: true
+          tx-ipxip4-segmentation: true
+          tx-ipxip6-segmentation: true
+          tx-nocache-copy: false
+          tx-scatter-gather-fraglist: true
+          tx-sctp-segmentation: true
+          tx-tcp-ecn-segmentation: true
+          tx-tcp-mangleid-segmentation: true
+          tx-tcp-segmentation: true
+          tx-tcp6-segmentation: true
+          tx-udp-segmentation: true
+          tx-udp_tnl-csum-segmentation: true
+          tx-udp_tnl-segmentation: true
+          tx-vlan-hw-insert: true
+          tx-vlan-stag-hw-insert: true
+      ipv4:
+        address:
+        - ip: 10.134.0.2
+          prefix-length: 23
+        enabled: true
+      ipv6:
+        address:
+        - ip: fe80::a85e:c9ff:feaf:615d
+          prefix-length: 64
+        enabled: true
+      mac-address: AA:5E:C9:AF:61:5D
+      max-mtu: 65535
+      min-mtu: 68
+      mptcp:
+        address-flags: []
+      mtu: 1400
+      name: ovn-k8s-mp0
+      ovs-db:
+        external_ids:
+          iface-id: k8s-fede-virt-worker-0.karmalabs.com
+          ovn-installed: "true"
+          ovn-installed-ts: "1674572305621"
+        other_config: {}
+      state: ignore
+      type: ovs-interface
+    - name: patch-br-ex_fede-virt-worker-0.karmalabs.com-to-br-int
+      patch:
+        peer: patch-br-int-to-br-ex_fede-virt-worker-0.karmalabs.com
+      state: ignore
+      type: ovs-interface
+    - name: patch-br-int-to-br-ex_fede-virt-worker-0.karmalabs.com
+      patch:
+        peer: patch-br-ex_fede-virt-worker-0.karmalabs.com-to-br-int
+      state: down
+      type: ovs-interface
+    routes:
+      config:
+      - destination: 172.30.0.0/16
+        next-hop-address: 10.134.0.1
+        next-hop-interface: ovn-k8s-mp0
+        table-id: 7
+      - destination: 10.132.0.0/14
+        next-hop-address: 10.134.0.1
+        next-hop-interface: ovn-k8s-mp0
+        table-id: 254
+      - destination: 169.254.169.1/32
+        next-hop-address: 0.0.0.0
+        next-hop-interface: br-ex
+        table-id: 254
+      - destination: 169.254.169.3/32
+        next-hop-address: 10.134.0.1
+        next-hop-interface: ovn-k8s-mp0
+        table-id: 254
+      - destination: 172.30.0.0/16
+        next-hop-address: 169.254.169.4
+        next-hop-interface: br-ex
+        table-id: 254
+      - destination: 0.0.0.0/0
+        metric: 150
+        next-hop-address: 192.168.110.1
+        next-hop-interface: ens9
+        table-id: 2
+      - destination: 172.30.0.0/16
+        metric: 150
+        next-hop-address: 192.169.2.1
+        next-hop-interface: ens9veth-vrf
+        table-id: 2
+      - destination: 192.168.110.1/32
+        metric: 150
+        next-hop-address: 0.0.0.0
+        next-hop-interface: ens9
+        table-id: 2
+      - destination: 0.0.0.0/0
+        metric: 150
+        next-hop-address: 192.169.2.2
+        next-hop-interface: ens9veth-def
+        table-id: 200
+      - destination: 192.169.2.2/32
+        metric: 150
+        next-hop-address: 0.0.0.0
+        next-hop-interface: ens9veth-def
+        table-id: 200
+      running:
+      - destination: 172.30.0.0/16
+        next-hop-address: 10.134.0.1
+        next-hop-interface: ovn-k8s-mp0
+        table-id: 7
+      - destination: 10.132.0.0/14
+        next-hop-address: 10.134.0.1
+        next-hop-interface: ovn-k8s-mp0
+        table-id: 254
+      - destination: 169.254.169.1/32
+        next-hop-address: 0.0.0.0
+        next-hop-interface: br-ex
+        table-id: 254
+      - destination: 169.254.169.3/32
+        next-hop-address: 10.134.0.1
+        next-hop-interface: ovn-k8s-mp0
+        table-id: 254
+      - destination: 172.30.0.0/16
+        next-hop-address: 169.254.169.4
+        next-hop-interface: br-ex
+        table-id: 254
+      - destination: 0.0.0.0/0
+        metric: 150
+        next-hop-address: 192.168.110.1
+        next-hop-interface: ens9
+        table-id: 2
+      - destination: 172.30.0.0/16
+        metric: 150
+        next-hop-address: 192.169.2.1
+        next-hop-interface: ens9veth-vrf
+        table-id: 2
+      - destination: 192.168.110.1/32
+        metric: 150
+        next-hop-address: 0.0.0.0
+        next-hop-interface: ens9
+        table-id: 2
+      - destination: 0.0.0.0/0
+        metric: 150
+        next-hop-address: 192.169.2.2
+        next-hop-interface: ens9veth-def
+        table-id: 200
+      - destination: 192.169.2.2/32
+        metric: 150
+        next-hop-address: 0.0.0.0
+        next-hop-interface: ens9veth-def
+        table-id: 200
+      - destination: 2620:52:0:2e37::/64
+        metric: 48
+        next-hop-address: '::'
+        next-hop-interface: br-ex
+        table-id: 254
+      - destination: ::/0
+        metric: 48
+        next-hop-address: fe80::a05:e201:b37d:2820
+        next-hop-interface: br-ex
+        table-id: 254
+      - destination: ::/0
+        metric: 48
+        next-hop-address: fe80::a05:e201:b37d:be20
+        next-hop-interface: br-ex
+        table-id: 254
+      - destination: ::/0
+        metric: 48
+        next-hop-address: fe80::200:5eff:fe00:201
+        next-hop-interface: br-ex
+        table-id: 254
+      - destination: 0.0.0.0/0
+        metric: 48
+        next-hop-address: 10.46.55.254
+        next-hop-interface: br-ex
+        table-id: 254
+      - destination: 0.0.0.0/0
+        metric: 100
+        next-hop-address: 192.168.110.1
+        next-hop-interface: ens8
+        table-id: 254
+  handlerNmstateVersion: nmstatectl 2.2.4
+  hostNetworkManagerVersion: 1.36.0
+  lastSuccessfulUpdateTime: "2023-02-09T11:27:06Z"

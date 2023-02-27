@@ -50,6 +50,11 @@ spec:
           next-hop-address: 192.169.2.1
           next-hop-interface: ens9veth-vrf
           table-id: 2
+        - destination: 10.135.0.0/16
+          metric: 150
+          next-hop-address: 192.169.2.1
+          next-hop-interface: ens9veth-vrf
+          table-id: 2
         - destination: 0.0.0.0/0
           metric: 150
           next-hop-address: 192.169.2.2
