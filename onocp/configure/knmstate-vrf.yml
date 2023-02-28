@@ -8,7 +8,7 @@ spec:
   maxUnavailable: 3 
   desiredState:
     interfaces:
-      - name: ens9veth-def
+      - name: ens9veth-def # the veth pair, both ips are arbitrary and can be the same on all the nodes as they are internal
         type: veth
         state: up
         ipv4:
@@ -30,7 +30,7 @@ spec:
           enabled: true
         veth:
           peer: ens9veth-def
-      - name: ens9vrf
+      - name: ens9vrf # the vrf definition
         type: vrf
         state: up
         vrf:
@@ -40,23 +40,32 @@ spec:
           route-table-id: 2
     routes:
       config:
-        - destination: 0.0.0.0/0
+        - destination: 0.0.0.0/0  # the vrf default gateway, all the traffic that enters in the vrf goes to the router
           metric: 150
           next-hop-address: 192.168.130.1
           next-hop-interface: ens9
           table-id: 2
-        - destination: 172.30.0.0/16
+        - destination: 172.30.0.0/16 # the clusterip CIDR, this is to steer the traffic directed to the service to the default vrf via the veth
           metric: 150
           next-hop-address: 192.169.2.1
           next-hop-interface: ens9veth-vrf
           table-id: 2
-        - destination: 10.135.0.0/16
+        - destination: 10.135.0.0/16 # the pods CIDR, this is to steer the return traffic for requests coming from pods to the default vrf via the veth
           metric: 150
           next-hop-address: 192.169.2.1
           next-hop-interface: ens9veth-vrf
           table-id: 2
-        - destination: 0.0.0.0/0
+        - destination: 0.0.0.0/0 # a route on a different table that is meant to steer all the traffic from the default vrf inside the vrf
           metric: 150
           next-hop-address: 192.169.2.2
           next-hop-interface: ens9veth-def
-          table-id: 200
+          table-id: 200 # this is the table id to be referenced in ovnk, in order to drive the traffic via the right vrf
+#    route-rules: to be fixed in nmstate
+#      config:
+#        - route-table: 255
+#          priority: 0
+#          family: ipv4
+#          state: absent
+#        - route-table: 255
+#          priority: 32765
+#          family: ipv4
