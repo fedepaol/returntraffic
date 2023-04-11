@@ -7,4 +7,4 @@ spec:
   nodeSelector:
     matchLabels:
       vrf: "true"
-  network: "200"
+  network: "2"
